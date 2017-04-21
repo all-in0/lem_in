@@ -12,27 +12,27 @@
 
 #include "lem-in.h"
 
-s_room	*search_rr(t_lem *st, int a)
+t_room	*search_rr(t_lem *st, int a)
 {
-	s_room	room;
+	t_room		*room;
 
 	room = st->rooms;
 	while (room->rom != a)
 		room = room->next;
-	return (&room);
+	return (room);
 }
 
 void 	*recurs(t_lem *st, int a, char *str)
 {
 	char			*s;
 	int				i;
-	s_room			*room;
+	t_room			*room;
 
 	room = search_rr(st, a);
 	i = -1;
-	while (room->connect[++i] && i <= int_len(room->connect)) // count connection
+	while (room->connect[++i] != 0 && i <= int_len(room->connect)) // count connection
 	{
-		recurs(st, room->connect[i], ft_strjoin(str, a - '0'));
+		recurs(st, room->connect[i], ft_strjoin_symb(str, a - '0'));
 	}
 	if (a == -2)
 	{

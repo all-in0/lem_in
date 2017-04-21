@@ -54,7 +54,8 @@ typedef struct		s_prf
 	char			*str;
 }					t_prf;
 
-char				**ft_add_str(char **m, char str);
+char				*ft_strjoin_symb(char *str, char a);
+char				**ft_add_str(char **m, char *str);
 int                 get_next_line(const int fd, char **line);
 int					kostuli(t_prf *phar);
 char				*ft_strload(char *str, int a);

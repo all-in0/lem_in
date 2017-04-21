@@ -18,14 +18,16 @@ typedef struct		s_room
 {
 	int 			rom;
 	char 			*name;
-	int				*connect;
+	int				*connect; // ne nugno pisat' start!
 	int 			count;
 	struct s_room	*next;
 }					t_room;
 
 typedef struct		s_lem
 {
-	char			**ways;
+
+	int 			*con;
+	int				**ways;
 	int				ants;
 	char			*start;
 	char 			*end;
