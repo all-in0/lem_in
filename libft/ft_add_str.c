@@ -24,7 +24,7 @@ int 	m_len(char **m)
 	return (i + 1);
 }
 
-int		**ft_add_str(char **m, char *str)
+char	**ft_add_str(char **m, char *str)
 {
 	char	**new_m;
 	int		i;

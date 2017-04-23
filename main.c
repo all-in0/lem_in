@@ -14,23 +14,19 @@
 
 int		main(int argc, char **argv)
 {
-	t_lem	*stru;
+	t_lem	stru;
 	char	*inp;
 	int		i;
 
 	i = 0;
-	stru = (t_lem *)malloc(sizeof(stru));
 	__builtin_bzero(&stru, sizeof(stru));
 	get_next_line(0, &inp);
-	stru->ants = ft_atoi(inp);
+	stru.ants = ft_atoi(inp);
 	while (inp[i] <= 9 && inp >= 0)
 		i++;
-	if (inp[i] != '\0')
-	{
-		write (1, "ERROR", 5);
+	if (inp[i] != '\0' && write (1, "ERROR", 5))
 		return (0);
-	}
-	phars(stru);
-	recurs(stru, 1, NULL);
+	phars(&stru);
+	recurs(&stru, 1, NULL);
 	return (0);
 }

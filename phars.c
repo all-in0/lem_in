@@ -36,25 +36,23 @@ int 	valid_line(char *line)
 	if (line[0] == '#')
 		return (ft_strstr(line, "##start") ? 1 :
 			(ft_strstr(line, "##end") ? 2 : 3));
-	while (line[a] != ' ' && line[a] != '\n' && line[a] != '\0')
+	while (line[a] != ' ' && line[a] != '\0')
 		a++;
-	if (line[a] == ' ')
+	if (line[a] == ' ' && a > 0)
 		a++;
 	else
 		return(0);
 	while (line[a] >= 0 && line[a] <= 9)
 		a++;
-	if (line[a] == ' ')
-		a++;
-	else if (ft_printf("ERROR\n"))
-		exit (1);
-	while (line[a] >= 0 && line[a] <= 9)
-		a++;
-	if (line[a] == '\0')
+	if (line[a] == ' ' && (line[a - 1] >= 0 && line[a - 1] <= 9))
 		a++;
 	else
-		return(1);
-	return (3);
+		return (0);
+	while (line[a] >= 0 && line[a] <= 9)
+		a++;
+	if (line[a] == '\0' && (line[a - 1] >= 0 && line[a - 1] <= 9))
+		return(4);
+	return (0);
 }
 
 int 	save_room(char *inp, t_lem *st)
@@ -118,6 +116,7 @@ int 	save_connect(t_lem *st, char *line)
 			tmp = tmp->next;
 		else if (ft_printf("ERROR\n"))
 			exit(1);
+	tmp->name = inp;
 	inp2 = (char *)malloc(sizeof(inp) * ft_strlen(&line[++i]) + 1);
 	inp2 = ft_strcpy(inp2, &line[i]);
 	while (ft_strcmp(inp2, tmp2->name))
@@ -125,20 +124,18 @@ int 	save_connect(t_lem *st, char *line)
 			tmp2 = tmp2->next;
 		else if (ft_printf("ERROR\n"))
 			exit(1);
-
+	tmp2->name = inp2;
 	return (1);
 }
 
 int 	phars(t_lem *st)
 {
-	int 	a;
 	int 	b;
 	char	*inp;
 
 	while (get_next_line(0, &inp))
 	{
-		a = 0;
-		if ((b = valid_line(&inp[a])) > 0 || save_connect(st, inp))
+		if ((st->rooms == NULL && (b = valid_line(inp)) > 0) || save_connect(st, inp))
 			if (b == 1)
 				search_start(inp, st);
 			else if (b == 2)
@@ -151,5 +148,5 @@ int 	phars(t_lem *st)
 			break ;
 		free(inp);
 	}
-	save_connect(st, inp);
+	return (1);
 }
