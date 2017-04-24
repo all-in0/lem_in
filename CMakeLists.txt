@@ -4,10 +4,6 @@ project(lem_in)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-    cmake-build-debug/CMakeFiles/3.6.2/CompilerIdC/CMakeCCompilerId.c
-    cmake-build-debug/CMakeFiles/3.6.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
-    cmake-build-debug/CMakeFiles/feature_tests.c
-    cmake-build-debug/CMakeFiles/feature_tests.cxx
     libft/ft_add_str.c
     libft/ft_atoi.c
     libft/ft_bzero.c
@@ -90,7 +86,6 @@ set(SOURCE_FILES
     libft/search_by_line.c
     lem-in.h
     main.c
-    phars.c
-    recurs.c)
+    pharsing.c)
 
 add_executable(lem_in ${SOURCE_FILES})
