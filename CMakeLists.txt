@@ -58,6 +58,7 @@ set(SOURCE_FILES
     libft/ft_striter.c
     libft/ft_striteri.c
     libft/ft_strjoin.c
+    libft/ft_strjoin_symb.c
     libft/ft_strlcat.c
     libft/ft_strlen.c
     libft/ft_strmap.c
@@ -86,6 +87,7 @@ set(SOURCE_FILES
     libft/search_by_line.c
     lem-in.h
     main.c
-    pharsing.c)
+    pharsing.c
+    recurs.c)
 
 add_executable(lem_in ${SOURCE_FILES})
