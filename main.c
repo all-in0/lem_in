@@ -14,15 +14,16 @@
 
 int		main(int argc, char **argv)
 {
-	t_room	rommmm;
+	t_room	*rommmm;
 	t_lem	stru;
 	char	*inp;
 	int		i;
 
 	i = 0;
-	__builtin_bzero(&stru, sizeof(stru));
-	__builtin_bzero(&rommmm, sizeof(rommmm));
-	stru.rooms = &rommmm;
+	__builtin_bzero(&stru, sizeof(t_lem));
+	rommmm = (t_room *)malloc(sizeof(t_room));
+	__builtin_bzero(rommmm, sizeof(t_room));
+	stru.rooms = rommmm;
 	get_next_line(0, &inp);
 	stru.ants = ft_atoi(inp);
 	while (inp[i] <= '9' && inp[i] >= '0')

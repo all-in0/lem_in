@@ -88,6 +88,7 @@ set(SOURCE_FILES
     lem-in.h
     main.c
     pharsing.c
-    recurs.c)
+#    recurs.c
+        )
 
 add_executable(lem_in ${SOURCE_FILES})

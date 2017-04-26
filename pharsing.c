@@ -39,7 +39,6 @@ int		search_start(char *inp, t_lem *st)
 {
 	static int		a = 1;
 	int				i;
-	t_room			*start;
 
 	if (a == 0 && ft_printf("ERROR6\n"))
 		exit (1);
@@ -48,12 +47,8 @@ int		search_start(char *inp, t_lem *st)
 		i++;
 	st->start = ft_strnew(i + 1);
 	st->start = ft_strncpy(st->start, inp, i);
-	start = (t_room *)malloc(sizeof(start));
-	__builtin_bzero(start, sizeof(start));
-	start->name = st->start;
-	start->rom = 1;
-	start->next = st->rooms;
-	st->rooms = start;
+	st->rooms->name = st->start;
+	st->rooms->rom = -1;
 	a = 0;
 	return 1;
 }
@@ -71,7 +66,7 @@ int 	valid_line(char *line)
 	if (line[a] == ' ' && a > 0)
 		a++;
 	else
-		return(0);
+		return (0);
 	while (line[a] >= '0' && line[a] <= '9')
 		a++;
 	if (line[a] == ' ' && (line[a - 1] >= '0' && line[a - 1] <= '9'))
@@ -81,13 +76,13 @@ int 	valid_line(char *line)
 	while (line[a] >= '0' && line[a] <= '9')
 		a++;
 	if (line[a] == '\0' && (line[a - 1] >= '0' && line[a - 1] <= '9'))
-		return(4);
+		return (4);
 	return (0);
 }
 
 int 	save_room(char *inp, t_lem *st)
 {
-	static int		i = 1;
+	static int		i = 0;
 	t_room	*r;
 	t_room	*new;
 	int		a;
@@ -95,10 +90,10 @@ int 	save_room(char *inp, t_lem *st)
 	a = 0;
 	i++;
 	r = st->rooms;
-	new = (t_room *)malloc(sizeof(new));
-	while (r->rom != i - 1)
+	new = (t_room *)malloc(sizeof(t_room));
+	while (r->next != NULL)
 		r = r->next;
-	__builtin_bzero(new, sizeof(new));
+	__builtin_bzero(new, sizeof(t_room));
 	r->next = new;
 	r = r->next;
 	r->rom = i;
@@ -155,7 +150,7 @@ int 	save_connect(t_lem *st, char *line)
 		else if (ft_printf("ERROR1\n"))
 			exit(1);
 	tmp2->name = inp2;
-	return (1);
+	return (5);
 }
 
 int 	parsing(t_lem *st)
@@ -165,16 +160,16 @@ int 	parsing(t_lem *st)
 
 	while (get_next_line(0, &inp))
 	{
-		if ((st->rooms == NULL && (b = valid_line(inp)) > 0) ||
-			save_connect(st, inp))
+		if (((b = valid_line(inp)) > 0) ||
+				( b = save_connect(st, inp)))
 			if (b == 1)
 				get_next_line(0, &inp) ? ((valid_line(inp) == 4) ? search_start(inp, st) : exit (1)) : exit (1);
 			else if (b == 2)
 				!get_next_line(0, &inp) ? exit (1) :
 				valid_line(inp) == 4 ? search_end(inp, st) : exit (1);
-			else if (b == 3)
+			else if (b == 3 || b == 5)
 				continue ;
-			else
+			else if (b == 4)
 				save_room(inp, st);
 		else
 			break ;
