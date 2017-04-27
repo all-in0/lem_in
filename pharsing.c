@@ -25,8 +25,8 @@ int		search_end(char *inp, t_lem *st)
 		i++;
 	st->end = ft_strnew(i + 1);
 	st->end = ft_strncpy(st->end, inp, i);
-	end = (t_room *)malloc(sizeof(end));
-	__builtin_bzero(end, sizeof(end));
+	end = (t_room *)malloc(sizeof(t_room));
+	__builtin_bzero(end, sizeof(t_room));
 	end->name = st->end;
 	end->rom = -2;
 	end->next = st->rooms;
@@ -161,16 +161,17 @@ int 	parsing(t_lem *st)
 	while (get_next_line(0, &inp))
 	{
 		if (((b = valid_line(inp)) > 0) ||
-				( b = save_connect(st, inp)))
+				( b = save_connect(st, inp))) {
 			if (b == 1)
-				get_next_line(0, &inp) ? ((valid_line(inp) == 4) ? search_start(inp, st) : exit (1)) : exit (1);
+				get_next_line(0, &inp) ? ((valid_line(inp) == 4) ? search_start(inp, st) : exit(1)) : exit(1);
 			else if (b == 2)
-				!get_next_line(0, &inp) ? exit (1) :
-				valid_line(inp) == 4 ? search_end(inp, st) : exit (1);
+				!get_next_line(0, &inp) ? exit(1) :
+				valid_line(inp) == 4 ? search_end(inp, st) : exit(1);
 			else if (b == 3 || b == 5)
-				continue ;
+				continue;
 			else if (b == 4)
 				save_room(inp, st);
+		}
 		else
 			break ;
 		free(inp);
