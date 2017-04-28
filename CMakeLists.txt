@@ -4,6 +4,7 @@ project(lem_in)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
+    libft/ft_add_int.c
     libft/ft_add_str.c
     libft/ft_atoi.c
     libft/ft_bzero.c

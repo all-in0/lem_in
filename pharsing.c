@@ -130,7 +130,7 @@ int 	save_connect(t_lem *st, char *line)
 
 	tmp = st->rooms;
 	tmp2 = st->rooms;
-	i = 0;
+	i = 1;
 	test_conect(line);
 	while (line[i] != '-')
 		i++;
@@ -141,7 +141,6 @@ int 	save_connect(t_lem *st, char *line)
 			tmp = tmp->next;
 		else if (ft_printf("ERROR9\n"))
 			exit(1);
-	tmp->name = inp;
 	inp2 = (char *)malloc(sizeof(inp) * ft_strlen(&line[++i]) + 1);
 	inp2 = ft_strcpy(inp2, &line[i]);
 	while (ft_strcmp(inp2, tmp2->name))
@@ -149,7 +148,8 @@ int 	save_connect(t_lem *st, char *line)
 			tmp2 = tmp2->next;
 		else if (ft_printf("ERROR1\n"))
 			exit(1);
-	tmp2->name = inp2;
+	tmp2->connect = ft_add_int(&tmp2->connect, tmp->rom);
+	tmp->connect = ft_add_int(&tmp->connect, tmp2->rom);
 	return (5);
 }
 
