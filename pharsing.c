@@ -134,22 +134,24 @@ int 	save_connect(t_lem *st, char *line)
 	test_conect(line);
 	while (line[i] != '-')
 		i++;
-	inp = (char *)malloc(sizeof(inp) * i + 1);
+	__builtin_bzero(inp = (char *)malloc(sizeof(inp) * i + 1), sizeof(inp));
 	inp = ft_strncpy(inp, line, i);
 	while (ft_strcmp(inp, tmp->name))
 		if (tmp->next != NULL)
 			tmp = tmp->next;
 		else if (ft_printf("ERROR9\n"))
 			exit(1);
-	inp2 = (char *)malloc(sizeof(inp) * ft_strlen(&line[++i]) + 1);
+	__builtin_bzero(inp2 = (char *)malloc(sizeof(inp) * ft_strlen(&line[++i]) + 1), sizeof(inp2));
 	inp2 = ft_strcpy(inp2, &line[i]);
 	while (ft_strcmp(inp2, tmp2->name))
 		if (tmp2->next != NULL)
 			tmp2 = tmp2->next;
 		else if (ft_printf("ERROR1\n"))
 			exit(1);
-	tmp2->connect = ft_add_int(&tmp2->connect, tmp->rom);
-	tmp->connect = ft_add_int(&tmp->connect, tmp2->rom);
+	tmp2->connect = ft_add_int(tmp2->connect, tmp->rom);
+	tmp->connect = ft_add_int(tmp->connect, tmp2->rom);
+	free(inp);
+	free(inp2);
 	return (5);
 }
 

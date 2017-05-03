@@ -12,21 +12,22 @@
 
 #include "ft_printf.h"
 
-int		*ft_add_int(int **mas, int a)
+int		*ft_add_int(int *mas, int a)
 {
 	int 	*temp;
 	int		i;
 
 	i = 0;
-	while (mas[i] != 0)
-		i++;
-	temp = (int *)malloc(sizeof(temp) * i + 2);
+	if (mas != NULL)
+		while (mas[i] != 0)
+			i++;
+	temp = (int *)malloc(sizeof(temp) * (i + 2));
 	temp[i + 1] = 0;
 	temp[i] = a;
 	while (i > 0)
 	{
-		temp[i] = (int) mas[i];
 		i--;
+		temp[i] = (int) mas[i];
 	}
 	//free(mas);
 	return (temp);
