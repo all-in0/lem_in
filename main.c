@@ -30,6 +30,6 @@ int		main(int argc, char **argv)
 		i++;
 	parsing(&stru);
 	ft_printf("%i, %s, $i", stru.rooms->rom, stru.rooms->name, stru.rooms->connect[0]);
-	recurs(&stru, 1, NULL);
+	recurs(&stru, -1, __builtin_bzero((int *)malloc(sizeof(int *) * 1), sizeof(int *)));
 	return (0);
 }

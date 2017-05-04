@@ -120,7 +120,7 @@ int 	test_conect(char *line)
 	return (1);
 }
 
-int 	save_connect(t_lem *st, char *line)
+int 	 save_connect(t_lem *st, char *line)
 {
 	char 	*inp;
 	char 	*inp2;
@@ -162,7 +162,7 @@ int 	parsing(t_lem *st)
 
 	while (get_next_line(0, &inp))
 	{
-		if (((b = valid_line(inp)) > 0) ||
+		if (( st->rm == 0 && ((b = valid_line(inp)) > 0)) ||
 				( b = save_connect(st, inp))) {
 			if (b == 1)
 				get_next_line(0, &inp) ? ((valid_line(inp) == 4) ? search_start(inp, st) : exit(1)) : exit(1);

@@ -12,6 +12,16 @@
 
 #include "lem-in.h"
 
+int 	int_len(int *mas)
+{
+	int		i;
+
+	i = 0;
+	while (mas[i] != 0)
+		i++;
+	return (i);
+}
+
 t_room	*search_rr(t_lem *st, int a)
 {
 	t_room		*room;
@@ -22,9 +32,19 @@ t_room	*search_rr(t_lem *st, int a)
 	return (room);
 }
 
-void 	*recurs(t_lem *st, int a, char *str)
+int 	*ft_intjoin(int *str, int a)
 {
-	char			*s;
+	int		i;
+	int 	*s;
+
+	i = 0;
+	while (str[i] != 0)
+		i++;
+
+}
+
+void 	recurs(t_lem *st, int a, int *str)
+{
 	int				i;
 	t_room			*room;
 
@@ -32,7 +52,7 @@ void 	*recurs(t_lem *st, int a, char *str)
 	i = -1;
 	while (room->connect[++i] != 0 && i <= int_len(room->connect)) // count connection
 	{
-		recurs(st, room->connect[i], ft_strjoin_symb(str, a - '0'));
+		recurs(st, room->connect[i], ft_intjoin(str, a));
 	}
 	if (a == -2)
 	{
