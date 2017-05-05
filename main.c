@@ -18,6 +18,7 @@ int		main(int argc, char **argv)
 	t_lem	stru;
 	char	*inp;
 	int		i;
+	int 	*mas;
 
 	i = 0;
 	__builtin_bzero(&stru, sizeof(t_lem));
@@ -30,6 +31,7 @@ int		main(int argc, char **argv)
 		i++;
 	parsing(&stru);
 	ft_printf("%i, %s, $i", stru.rooms->rom, stru.rooms->name, stru.rooms->connect[0]);
-	recurs(&stru, -1, __builtin_bzero((int *)malloc(sizeof(int *) * 1), sizeof(int *)));
+	__builtin_bzero(mas = (int *)malloc(sizeof(int *) * 1), sizeof(int *));
+	recurs(&stru, -1, mas, -1);
 	return (0);
 }

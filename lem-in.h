@@ -34,7 +34,7 @@ typedef struct		s_lem
 	t_room			*rooms;
 }					t_lem;
 
-void 	recurs(t_lem *st, int a, int *str);
+void 	recurs(t_lem *st, int a, int *str, int i);
 int 	parsing(t_lem *str);
 
 #endif

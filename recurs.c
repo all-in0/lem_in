@@ -40,19 +40,24 @@ int 	*ft_intjoin(int *str, int a)
 	i = 0;
 	while (str[i] != 0)
 		i++;
-
+	s = (int *)malloc(sizeof(s) * (i + 2));
+	s[i + 1] = 0;
+	s[i] = a;
+	while (--i >= 0)
+		s[i] = str[i];
+	free(str);
+	return (s);
 }
 
-void 	recurs(t_lem *st, int a, int *str)
+void 	recurs(t_lem *st, int a, int *str, int i)
 {
-	int				i;
 	t_room			*room;
 
 	room = search_rr(st, a);
-	i = -1;
-	while (room->connect[++i] != 0 && i <= int_len(room->connect)) // count connection
+	while (room->connect[++i] != 0 && i <= int_len(room->connect))
 	{
-		recurs(st, room->connect[i], ft_intjoin(str, a));
+		if (room->connect[i] != -1) // ybrat povtory
+			recurs(st, room->connect[i], ft_intjoin(str, a), -1);  //ne na4inajet room s 0 a peredaet connect 4erez i
 	}
 	if (a == -2)
 	{

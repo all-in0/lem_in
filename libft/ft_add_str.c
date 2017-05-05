@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int 	m_len(char **m)
+int 	m_len(int **m)
 {
 	int		i;
 
@@ -24,13 +24,13 @@ int 	m_len(char **m)
 	return (i + 1);
 }
 
-char	**ft_add_str(char **m, char *str)
+int		**ft_add_str(int **m, int *str)
 {
-	char	**new_m;
+	int		**new_m;
 	int		i;
 
 	i = -1;
-	new_m = (char **)malloc(sizeof(new_m) * (m_len(m) + 1));
+	new_m = (int **)malloc(sizeof(new_m) * (m_len(m) + 1));
 	while (m[++i] != NULL)
 		new_m[i] = m[i];
 	new_m[i] = str;
