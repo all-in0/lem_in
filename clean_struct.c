@@ -93,18 +93,24 @@ void 	clean_doubles(t_lem *rr)
 	t_lem	*rm;
 	int 	i;
 	int 	a;
+	int		b;
+	int		c;
 
 	rm = rr;
 	i = -1;
 	while (rm->ways[++i] != 0)
 	{
-		while (rm->ways[a] != 0)
+		a = -1;
+		while (rm->ways[i][++a] != 0)
 		{
-			if (rm->ways[a][b] == 0)
-				a++;
-			if (rm->ways[i][c] == rm->ways[a][b])
-				rm_way(ways, a);
-
+			b = i;
+			while (rm->ways[b] != 0)
+			{
+				if (rm->ways[b][c] == 0)
+					b++;
+				if (rm->ways[i][c] == rm->ways[a][b])
+					rm_way(ways, a);
+			}
 		}
 	}
 }
