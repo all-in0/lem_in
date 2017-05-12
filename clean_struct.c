@@ -88,7 +88,23 @@ void	m_l(t_lem *st)
 	bubble_m(st);
 }
 
-void 	clean_doubles(t_room *rr)
+void 	clean_doubles(t_lem *rr)
 {
-	t_room	*rm;
+	t_lem	*rm;
+	int 	i;
+	int 	a;
+
+	rm = rr;
+	i = -1;
+	while (rm->ways[++i] != 0)
+	{
+		while (rm->ways[a] != 0)
+		{
+			if (rm->ways[a][b] == 0)
+				a++;
+			if (rm->ways[i][c] == rm->ways[a][b])
+				rm_way(ways, a);
+
+		}
+	}
 }
