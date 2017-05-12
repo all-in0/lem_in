@@ -21,6 +21,8 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <fcntl.h>
+#include <stdint.h>
+
 # define RED	write(1, "\x1b[31m", 5)
 # define GRE	write(1, "\x1b[32m", 5)
 # define YEL	write(1, "\x1b[33m", 5)

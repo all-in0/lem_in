@@ -49,6 +49,18 @@ int 	*ft_intjoin(int *str, int a)
 	return (s);
 }
 
+int 	test_repeat(int *mas, int a)
+{
+	int		i;
+
+	i = 0;
+	while (mas[i] != 0 && mas[i] != a)
+		i++;
+	if (mas[i] == 0)
+		return (1);
+	return (0);
+}
+
 void 	recurs(t_lem *st, int a, int *str, int i)
 {
 	t_room			*room;
@@ -56,11 +68,11 @@ void 	recurs(t_lem *st, int a, int *str, int i)
 	room = search_rr(st, a);
 	while (room->connect[++i] != 0 && i <= int_len(room->connect))
 	{
-		if (room->connect[i] != -1) // ybrat povtory
+		if (room->connect[i] != -1 && test_repeat(str, room->connect[i])) // ybrat povtory
 			recurs(st, room->connect[i], ft_intjoin(str, a), -1);  //ne na4inajet room s 0 a peredaet connect 4erez i
 	}
 	if (a == -2)
 	{
-		st->ways = ft_add_str(st->ways, str);
+		st->ways = ft_add_str(st->ways, ft_intjoin(str, -2));
 	}
 }
