@@ -108,7 +108,7 @@ void	ft_cl_d(t_lem *rr, int a, int i)
 	b = a;
 	while (rr->ways[++b] != 0)
 	{
-		c = 0;
+		c = 0 ;
 		while (rr->ways[b][++c] != 0)
 		{
 			if (rr->ways[b][c] == rr->ways[a][i])
