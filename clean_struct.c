@@ -88,29 +88,47 @@ void	m_l(t_lem *st)
 	bubble_m(st);
 }
 
+int 	del_row(t_lem *rr, int b)
+{
+	while (rr->ways[b] != 0)
+	{
+		rr->ways[b] = rr->ways[b + 1];
+		b++;
+	}
+	free(rr->ways[b]);
+	// proverit free addresa po indexu b! ne frishet li b - 1 tak kak ukazivaet na odno i to ge;
+	return (1);
+}
+
+void	ft_cl_d(t_lem *rr, int a, int i)
+{
+	int 	b;
+	int 	c;
+
+	b = a;
+	while (rr->ways[++b] != 0)
+	{
+		c = 0;
+		while (rr->ways[b][++c] != 0)
+		{
+			if (rr->ways[b][c] == rr->ways[a][i])
+				if (del_row(rr, b--))
+					break ;
+		}
+		b++;
+	}
+}
+
 void 	clean_doubles(t_lem *rr)
 {
-	t_lem	*rm;
 	int 	i;
-	int 	a;
 	int		b;
-	int		c;
 
-	rm = rr;
 	i = -1;
-	while (rm->ways[++i] != 0)
+	while (rr->ways[++i] != 0)
 	{
-		a = -1;
-		while (rm->ways[i][++a] != 0)
-		{
-			b = i;
-			while (rm->ways[b] != 0)
-			{
-				if (rm->ways[b][c] == 0)
-					b++;
-				if (rm->ways[i][c] == rm->ways[a][b])
-					rm_way(ways, a);
-			}
-		}
+		b = -1;
+		while (rr->ways[i][++b])
+			ft_cl_d(rr, i, b);
 	}
 }
