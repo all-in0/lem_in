@@ -10,10 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "printf.h"
 
-while(ants)
+int 	search_way(t_lem *rr)
 {
-	if (way[i][0] <= ants)
-		ants--;
-		write way_name (way[i][1]++);
+	t_room	*rw;
+	int 	a;
+	int 	i;
+
+	while (rr->ants)
+	{
+		rw = rr->rm;
+		while (!rw->rom)
+			rw = rw->next;
+		rr->ants--;
+	}
+//	while(ants)
+//	{
+//		if (way[i][0] <= ants)
+//			ants--;
+//		write way_name (way[i][1]++);
+//	}
 }
