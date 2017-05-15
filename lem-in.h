@@ -34,6 +34,9 @@ typedef struct		s_lem
 	t_room			*rooms;
 }					t_lem;
 
+void	clean_connect(t_room *rr);
+void	m_l(t_lem *st);
+void 	clean_doubles(t_lem *rr);
 void 	recurs(t_lem *st, int a, int *str, int i);
 int 	parsing(t_lem *str);
 

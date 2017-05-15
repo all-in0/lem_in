@@ -12,31 +12,30 @@
 
 #include "lem-in.h"
 
-void	cleanc(int *mas, int a)
+void	cleanc(int *mas, int a) // poisk bolwe 4em 1 povtora
 {
 	int		i;
+	int 	b;
 
 	i = -1;
 	while (mas[++i] != 0)
 	{
 		if(mas[i] == a)
 		{
-			while (mas[i] != 0)
+			b = i;
+			while (mas[b] != 0)
 			{
-				mas[i] = mas[i + 1];
-				i++;
+				mas[b] = mas[b + 1];
+				b++;
 			}
-			return ;
 		}
 	}
-
 }
 
 void	clean_connect(t_room *rr)
 {
 	t_room	*rm;
 	int		i;
-	int		a;
 
 	rm = rr;
 	while (rm != NULL)
@@ -58,7 +57,7 @@ void 	bubble_m(t_lem *st)
 		i = 0;
 		while (st->ways[i] != 0)
 		{
-			if (st->ways[i][0] > st->ways[i + 1][0])
+			if (st->ways[i + 1] != 0 && st->ways[i][0] > st->ways[i + 1][0])
 			{
 				tmp = st->ways[i];
 				st->ways[i] = st->ways[i + 1];
@@ -115,7 +114,6 @@ void	ft_cl_d(t_lem *rr, int a, int i)
 				if (del_row(rr, b--))
 					break ;
 		}
-		b++;
 	}
 }
 
@@ -127,8 +125,9 @@ void 	clean_doubles(t_lem *rr)
 	i = -1;
 	while (rr->ways[++i] != 0)
 	{
-		b = -1;
+		b = 0;
 		while (rr->ways[i][++b])
-			ft_cl_d(rr, i, b);
+			if (rr->ways[i][b] > 0)
+				ft_cl_d(rr, i, b);
 	}
 }

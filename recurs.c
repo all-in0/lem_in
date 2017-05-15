@@ -45,7 +45,7 @@ int 	*ft_intjoin(int *str, int a)
 	s[i] = a;
 	while (--i >= 0)
 		s[i] = str[i];
-	free(str);
+	//free(str);
 	return (s);
 }
 

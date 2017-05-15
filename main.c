@@ -32,7 +32,9 @@ int		main(int argc, char **argv)
 	parsing(&stru);
 	ft_printf("%i, %s, $i", stru.rooms->rom, stru.rooms->name, stru.rooms->connect[0]);
 	__builtin_bzero(mas = (int *)malloc(sizeof(int *) * 1), sizeof(int *));
-	clean_str();
+	clean_connect(rommmm);
+	m_l(&stru);
 	recurs(&stru, -1, mas, -1);
+	clean_doubles(&stru);
 	return (0);
 }
