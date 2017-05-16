@@ -12,43 +12,68 @@
 
 #include "lem-in.h"
 
-//int 	**copy_ways(int **src)
+
+//int 	search_ways(t_lem *rr)
 //{
-//	int 	**dst;
-//	int 	i;
-//	int 	a;
+//	t_way	*w;
 //
-//	i = 0;
-//	while (srcp[i] != 0)
-//		i++;
-//	dst = (int **)malloc(sizeof(dst) * (i + 1));
-//	while (i > 0)
-//	{
-//		a = -1
-//		while ()
-//		i--;
-//	}
+//	w = rr->wa;
+//
 //}
-//
-//int 	search_way(t_lem *rr)
-//{
-//	int 	**copy;
-//	t_room	*rw;
-//	int 	a;
-//	int 	i;
-//
-//	copy = copy_ways(rr->ways);
-//	a = -1;
-//	while (++a <= rr->ants)
-//	{
-//		rw = rr->rm;
-//		while (!rw->rom)
-//			rw = rw->next;
-//	}
-//	while(ants)
-//	{
-//		if (way[i][0] <= ants)
-//			ants--;
-//		write way_name (way[i][1]++);
-//	}
-//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// install valgrind
+
+int 	sea_w(t_lem *rr, int a, int i, int b)
+{
+	t_way	*tmpw;
+	t_way	*tw;
+	int 	w;
+
+	tw = rr->wa;
+	w = 0;
+	while (rr->ways[i][++w] != 0)
+	{
+		while (tw->day != b && tw->next != NULL)
+			tw = tw->next;
+		if (tw->day != b)
+		{
+			tw->next = (tmpw = (t_way *)malloc(sizeof(tmpw) * 1));
+			tw = tw->next;
+			__builtin_bzero(tw, sizeof(tw));
+			tw->day = b;
+		}
+	}
+	return 0;
+}
+
+int 	search_way(t_lem *rr)
+{
+	int 	**copy;
+	t_room	*rw;
+	int 	a;
+	int 	b;
+	int 	i;
+
+	a = 0;
+	i = 0;
+	b = 1;
+	while(++a <= rr->ants)
+	{
+		if ((rr->ways[i] == 0 && ++b) || (rr->ways[i][0] > (rr->ants - a) && ++b))
+			i = 0;
+		sea_w(rr, a, i, b);
+	}
+}

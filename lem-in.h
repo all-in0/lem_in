@@ -23,6 +23,13 @@ typedef struct		s_room
 	struct s_room	*next;
 }					t_room;
 
+typedef struct		s_way
+{
+	int 			day;
+	char			*wa;
+	struct s_way	*next;
+}					t_way;
+
 typedef struct		s_lem
 {
 	int 			rm;
@@ -31,6 +38,7 @@ typedef struct		s_lem
 	int				ants;
 	char			*start;
 	char 			*end;
+	t_way			*wa;
 	t_room			*rooms;
 }					t_lem;
 
