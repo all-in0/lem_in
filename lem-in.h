@@ -42,6 +42,8 @@ typedef struct		s_lem
 	t_room			*rooms;
 }					t_lem;
 
+int 	search_way(t_lem *rr);
+t_room	*search_rr(t_lem *st, int a);
 void	clean_connect(t_room *rr);
 void	m_l(t_lem *st);
 void 	clean_doubles(t_lem *rr);

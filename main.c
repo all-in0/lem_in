@@ -36,5 +36,6 @@ int		main(int argc, char **argv)
 	m_l(&stru);
 	recurs(&stru, -1, mas, -1);
 	clean_doubles(&stru);
+	search_way(&stru);
 	return (0);
 }

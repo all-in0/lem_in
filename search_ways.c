@@ -22,19 +22,18 @@
 //}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // install valgrind
+
+char	*save_wa(int a, int b, t_way *tw, t_lem *rr) {
+	char	*str;
+	char	*in;
+	in = ft_itoa(a);
+	str = search_rr(rr, b)->name;
+	if (tw->wa == NULL)
+		tw->wa = ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str));
+	else
+		tw->wa = ft_strjoin(tw->wa, ft_strjoin(" ", ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str))));
+}
 
 int 	sea_w(t_lem *rr, int a, int i, int b)
 {
@@ -50,19 +49,18 @@ int 	sea_w(t_lem *rr, int a, int i, int b)
 			tw = tw->next;
 		if (tw->day != b)
 		{
-			tw->next = (tmpw = (t_way *)malloc(sizeof(tmpw) * 1));
+			tw->next = (tmpw = (t_way *) malloc(sizeof(tmpw) * 1));
 			tw = tw->next;
 			__builtin_bzero(tw, sizeof(tw));
 			tw->day = b;
 		}
+			tw->wa = save_wa(a, rr->ways[i][w], tw, rr);
 	}
 	return 0;
 }
 
 int 	search_way(t_lem *rr)
 {
-	int 	**copy;
-	t_room	*rw;
 	int 	a;
 	int 	b;
 	int 	i;
