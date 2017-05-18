@@ -33,6 +33,7 @@ char	*save_wa(int a, int b, t_way *tw, t_lem *rr) {
 		tw->wa = ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str));
 	else
 		tw->wa = ft_strjoin(tw->wa, ft_strjoin(" ", ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str))));
+	return (str);
 }
 
 int 	sea_w(t_lem *rr, int a, int i, int b)
@@ -43,9 +44,13 @@ int 	sea_w(t_lem *rr, int a, int i, int b)
 
 	tw = rr->wa;
 	w = 0;
+	if (tw == NULL) {
+		tw = (t_way *) malloc(sizeof(tw) * 1), sizeof(tw);
+		tw->day = 1;
+	}
 	while (rr->ways[i][++w] != 0)
 	{
-		while (tw->day != b && tw->next != NULL)
+		while (tw->next != NULL && tw->day != b)
 			tw = tw->next;
 		if (tw->day != b)
 		{
@@ -70,8 +75,10 @@ int 	search_way(t_lem *rr)
 	b = 1;
 	while(++a <= rr->ants)
 	{
-		if ((rr->ways[i] == 0 && ++b) || (rr->ways[i][0] > (rr->ants - a) && ++b))
+		if (((rr->ways[i] == 0 || (rr->ways[i][0] > (rr->ants - a))) && (i != 0 && ++b)))
 			i = 0;
+		else
+			i++;
 		sea_w(rr, a, i, b);
 	}
 }
