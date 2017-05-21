@@ -24,7 +24,7 @@
 
 // install valgrind
 
-char	*save_wa(int a, int b, t_way *tw, t_lem *rr) {
+void	*save_wa(int a, int b, t_way *tw, t_lem *rr) {
 	char	*str;
 	char	*in;
 	in = ft_itoa(a);
@@ -33,7 +33,6 @@ char	*save_wa(int a, int b, t_way *tw, t_lem *rr) {
 		tw->wa = ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str));
 	else
 		tw->wa = ft_strjoin(tw->wa, ft_strjoin(" ", ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str))));
-	return (str);
 }
 
 int 	sea_w(t_lem *rr, int a, int i, int b)
@@ -42,17 +41,21 @@ int 	sea_w(t_lem *rr, int a, int i, int b)
 	t_way	*tw;
 	int 	w;
 
-	tw = rr->wa;
 	w = 0;
-	if (tw == NULL) {
-		tw = (t_way *) malloc(sizeof(tw) * 1), sizeof(tw);
+	if (rr->wa == NULL) {
+		tw = (t_way *) malloc(sizeof(tw) * 1);
+		tw->wa = NULL;
+		tw->next = NULL;
 		tw->day = 1;
+		rr->wa = tw;
 	}
+	else
+		tw = rr->wa;
 	while (rr->ways[i][++w] != 0)
 	{
-		while (tw->next != NULL && tw->day != b)
+		while (tw != NULL && tw->day != b) // correct mistake with checking value
 			tw = tw->next;
-		if (tw->day != b)
+		if (tw == NULL)
 		{
 			tw->next = (tmpw = (t_way *) malloc(sizeof(tmpw) * 1));
 			tw = tw->next;
@@ -60,6 +63,7 @@ int 	sea_w(t_lem *rr, int a, int i, int b)
 			tw->day = b;
 		}
 			tw->wa = save_wa(a, rr->ways[i][w], tw, rr);
+		b++;
 	}
 	return 0;
 }
@@ -77,7 +81,7 @@ int 	search_way(t_lem *rr)
 	{
 		if (((rr->ways[i] == 0 || (rr->ways[i][0] > (rr->ants - a))) && (i != 0 && ++b)))
 			i = 0;
-		else
+		else if (rr->ways[i + 1] != 0)
 			i++;
 		sea_w(rr, a, i, b);
 	}

@@ -14,6 +14,7 @@
 
 int		main(int argc, char **argv)
 {
+	t_way	*wai;
 	t_room	*rommmm;
 	t_lem	stru;
 	char	*inp;
@@ -24,13 +25,17 @@ int		main(int argc, char **argv)
 	__builtin_bzero(&stru, sizeof(t_lem));
 	rommmm = (t_room *)malloc(sizeof(t_room));
 	__builtin_bzero(rommmm, sizeof(t_room));
+//	wai = (t_way *)malloc(sizeof(t_way));
+//	__builtin_bzero(wai, sizeof(t_way));
+//	wai->wa = NULL;
+//	stru.wa = wai;
 	stru.rooms = rommmm;
 	get_next_line(0, &inp);
 	stru.ants = ft_atoi(inp);
 	while (inp[i] <= '9' && inp[i] >= '0')
 		i++;
 	parsing(&stru);
-	ft_printf("%i, %s, $i", stru.rooms->rom, stru.rooms->name, stru.rooms->connect[0]);
+	ft_printf("%i, %s", stru.rooms->rom, stru.rooms->name);
 	__builtin_bzero(mas = (int *)malloc(sizeof(int *) * 1), sizeof(int *));
 	clean_connect(stru.rooms);
 	recurs(&stru, -1, mas, -1);
