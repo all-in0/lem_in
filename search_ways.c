@@ -87,8 +87,11 @@ int 	search_way(t_lem *rr)
 	b = 1;
 	while(++a <= rr->ants)
 	{
-		if (((rr->ways[i] == 0 || (rr->ways[i][0] > (rr->ants - a))) && (i != 0 && ++b)))
+		if (((rr->ways[i] == 0 || (rr->ways[i][0] > (rr->ants - a))) && i != 0)) //owibka
+		{
+			b++;
 			i = 0;
+		}
 		else if (rr->ways[i + 1] != 0)
 			i++;
 		sea_w(rr, a, i, b);

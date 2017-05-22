@@ -12,6 +12,15 @@
 
 #include "lem-in.h"
 
+void	prnt_all(t_way *rr)
+{
+	while (rr != NULL)
+	{
+		ft_printf("%s\n", rr->wa);
+		rr = rr->next;
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	t_way	*wai;
@@ -35,12 +44,13 @@ int		main(int argc, char **argv)
 	while (inp[i] <= '9' && inp[i] >= '0')
 		i++;
 	parsing(&stru);
-	ft_printf("%i, %s", stru.rooms->rom, stru.rooms->name);
+	//ft_printf("%i, %s", stru.rooms->rom, stru.rooms->name);
 	__builtin_bzero(mas = (int *)malloc(sizeof(int *) * 1), sizeof(int *));
 	clean_connect(stru.rooms);
 	recurs(&stru, -1, mas, -1);
 	m_l(&stru);
 	clean_doubles(&stru);
 	search_way(&stru);
+	prnt_all(stru.wa);
 	return (0);
 }
