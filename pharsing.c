@@ -99,7 +99,7 @@ int 	save_room(char *inp, t_lem *st)
 	r->rom = i;
 	while (inp[a] != ' ')
 		a++;
-	r->name = (char *)malloc(sizeof(r->name) * a);
+	r->name = (char *)malloc(sizeof(char *) * a);
 	r->name[a] = '\0';
 	while (a-- != -1)
 		r->name[a] = inp[a];
@@ -134,14 +134,14 @@ int 	 save_connect(t_lem *st, char *line)
 	test_conect(line);
 	while (line[i] != '-')
 		i++;
-	__builtin_bzero(inp = (char *)malloc(sizeof(inp) * i + 1), sizeof(inp));
+	__builtin_bzero(inp = (char *)malloc(sizeof(char *) * i + 1), sizeof(char *));
 	inp = ft_strncpy(inp, line, i);
 	while (ft_strcmp(inp, tmp->name))
 		if (tmp->next != NULL)
 			tmp = tmp->next;
 		else if (ft_printf("ERROR9\n"))
 			exit(1);
-	__builtin_bzero(inp2 = (char *)malloc(sizeof(inp) * ft_strlen(&line[++i]) + 1), sizeof(inp2));
+	__builtin_bzero(inp2 = (char *)malloc(sizeof(char *) * ft_strlen(&line[++i]) + 1), sizeof(char *));
 	inp2 = ft_strcpy(inp2, &line[i]);
 	while (ft_strcmp(inp2, tmp2->name))
 		if (tmp2->next != NULL)

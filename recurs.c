@@ -40,7 +40,7 @@ int 	*ft_intjoin(int *str, int a)
 	i = 0;
 	while (str[i] != 0)
 		i++;
-	s = (int *)malloc(sizeof(s) * (i + 2));
+	s = (int *)malloc(sizeof(int *) * (i + 2));
 	s[i + 1] = 0;
 	s[i] = a;
 	while (--i >= 0)

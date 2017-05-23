@@ -27,7 +27,7 @@ int		*ft_add_int(int *mas, int a)
 	while (i > 0)
 	{
 		i--;
-		temp[i] = (int) mas[i];
+		temp[i] = mas[i];
 	}
 	//free(mas);
 	return (temp);
