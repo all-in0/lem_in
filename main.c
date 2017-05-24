@@ -52,5 +52,6 @@ int		main(int argc, char **argv)
 	clean_doubles(&stru);
 	search_way(&stru);
 	prnt_all(stru.wa);
+	cl_all(&stru);
 	return (0);
 }

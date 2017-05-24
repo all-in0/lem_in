@@ -164,19 +164,23 @@ int 	parsing(t_lem *st)
 	{
 		if (( st->rm == 0 && ((b = valid_line(inp)) > 0)) ||
 				( b = save_connect(st, inp))) {
-			if (b == 1)
+			if (b == 1) {
+				free(inp);
 				get_next_line(0, &inp) ? ((valid_line(inp) == 4) ? search_start(inp, st) : exit(1)) : exit(1);
-			else if (b == 2)
+			}
+			else if (b == 2) {
+				free(inp);
 				!get_next_line(0, &inp) ? exit(1) :
 				valid_line(inp) == 4 ? search_end(inp, st) : exit(1);
+			}
 			else if (b == 3 || b == 5)
 				continue;
 			else if (b == 4)
 				save_room(inp, st);
+			free(inp);
 		}
 		else
 			break ;
-		free(inp);
 	}
 	return (1);
 }
