@@ -91,6 +91,7 @@ set(SOURCE_FILES
     main.c
     pharsing.c
     recurs.c
-    search_ways.c)
+    search_ways.c
+    clean.c)
 
 add_executable(lem_in ${SOURCE_FILES})

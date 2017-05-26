@@ -45,7 +45,8 @@ int		main(int argc, char **argv)
 		i++;
 	parsing(&stru);
 	//ft_printf("%i, %s", stru.rooms->rom, stru.rooms->name);
-	__builtin_bzero(mas = (int *)malloc(sizeof(int *) * 1), sizeof(int *));
+	mas = (int *)malloc(sizeof(int *));
+	__builtin_bzero(mas, sizeof(int *));
 	clean_connect(stru.rooms);
 	recurs(&stru, -1, mas, -1);
 	m_l(&stru);
@@ -53,5 +54,6 @@ int		main(int argc, char **argv)
 	search_way(&stru);
 	prnt_all(stru.wa);
 	cl_all(&stru);
+	free(mas);
 	return (0);
 }

@@ -14,18 +14,31 @@
 
 int 	cl_all(t_lem *rr)
 {
-	int		i;
-	s_way	tmp1;
-	s_way	tmp_1;
-	t_room	tmp2;
+	int 	i;
+	t_way	*tmp;
+	t_room	*tm;
 
-	while (rr->wa != NULL)
+	i = -1;
+	while (rr->wa)
 	{
-		tmp1 = rr->wa;
-		while (tmp1->next != NULL) {
-			tmp1 = tmp->next;
-		}
-		free(tmp1->wa);
-		free(tmp1);
+		tmp = rr->wa;
+		rr->wa = rr->wa->next;
+		free(tmp->wa);
+		free(tmp);
 	}
+	while (rr->rooms)
+	{
+		tm = rr->rooms;
+		rr->rooms = rr->rooms->next;
+		free(tm->name);
+		free(tm->connect);
+		free(tm);
+	}
+	while (rr->ways[++i] != 0)
+		free(rr->ways[i]);
+	free(rr->ways[i]);
+	free(rr->ways);
+//	free(rr->start);
+//	free(rr->end);
+	return(0);
 }

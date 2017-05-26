@@ -18,8 +18,7 @@ typedef struct		s_room
 {
 	int 			rom;
 	char 			*name;
-	int				*connect; // ne nugno pisat' start!
-	int 			count;
+	int				*connect;
 	struct s_room	*next;
 }					t_room;
 
@@ -33,7 +32,6 @@ typedef struct		s_way
 typedef struct		s_lem
 {
 	int 			rm;
-	int 			*con;
 	int				**ways;
 	int				ants;
 	char			*start;
