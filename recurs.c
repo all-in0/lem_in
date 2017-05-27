@@ -71,6 +71,7 @@ void 	recurs(t_lem *st, int a, int *str, int i)
 		if (room->connect[i] != -1 && test_repeat(str, room->connect[i])) // ybrat povtory
 			recurs(st, room->connect[i], ft_intjoin(str, a), -1);  //ne na4inajet room s 0 a peredaet connect 4erez i
 	}
+	//free(&str);
 	if (a == -2)
 	{
 		st->ways = ft_add_str(st->ways, ft_intjoin(str, -2));

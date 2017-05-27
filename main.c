@@ -23,7 +23,7 @@ void	prnt_all(t_way *rr)
 
 int		main(int argc, char **argv)
 {
-	t_way	*wai;
+	//t_way	*wai;
 	t_room	*rommmm;
 	t_lem	stru;
 	char	*inp;
@@ -41,6 +41,7 @@ int		main(int argc, char **argv)
 	stru.rooms = rommmm;
 	get_next_line(0, &inp);
 	stru.ants = ft_atoi(inp);
+	//free(&inp);
 	while (inp[i] <= '9' && inp[i] >= '0')
 		i++;
 	parsing(&stru);
