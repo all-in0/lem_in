@@ -55,6 +55,6 @@ int		main(int argc, char **argv)
 	search_way(&stru);
 	prnt_all(stru.wa);
 	cl_all(&stru);
-	free(mas);
+	//free(mas);
 	return (0);
 }

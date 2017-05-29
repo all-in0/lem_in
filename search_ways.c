@@ -25,14 +25,15 @@
 // install valgrind
 
 void	save_wa(int a, int b, t_way *tw, t_lem *rr) {
-	char	*str;
-	char	*in;
+	const char	*str;
+	char		*in;
 	in = ft_itoa(a);
 	str = search_rr(rr, b)->name;
 	if (tw->wa == NULL)
 		tw->wa = ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str));
 	else
 		tw->wa = ft_strjoin(tw->wa, ft_strjoin(" ", ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str))));
+	free(in);
 }
 
 int 	sea_w(t_lem *rr, int a, int i, int b)

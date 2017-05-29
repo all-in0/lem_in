@@ -177,7 +177,7 @@ int 	parsing(t_lem *st)
 				continue;
 			else if (b == 4)
 				save_room(inp, st);
-			//free(inp);
+			free(inp);
 		}
 		else
 			break ;

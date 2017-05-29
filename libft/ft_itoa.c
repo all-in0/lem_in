@@ -31,6 +31,7 @@ static char		*ft_strrev(char *str)
 		j--;
 	}
 	rev[i] = 0;
+	free(str);
 	return (rev);
 }
 
