@@ -32,7 +32,7 @@ t_room	*search_rr(t_lem *st, int a)
 	return (room);
 }
 
-int 	*ft_intjoin(int *str, int a)
+int 	* ft_intjoin(int *str, int a)
 {
 	int		i;
 	int 	*s;
