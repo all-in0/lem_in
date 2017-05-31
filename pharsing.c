@@ -18,7 +18,7 @@ int		search_end(char *inp, t_lem *st)
 	int				i;
 	t_room			*end;
 
-	if (a == 0 && ft_printf("ERROR5\n"))
+	if (a == 2 && ft_printf("ERROR5\n"))
 		exit (0);
 	i = 0;
 	while (inp[i] != ' ')
@@ -26,7 +26,8 @@ int		search_end(char *inp, t_lem *st)
 	st->end = ft_strnew(i + 1);
 	st->end = ft_strncpy(st->end, inp, i);
 	end = (t_room *)malloc(sizeof(t_room));
-	__builtin_bzero(end, sizeof(t_room *));
+//	__builtin_bzero(end, sizeof(t_room));
+	end->connect = NULL;
 	end->name = st->end;
 	end->rom = -2;
 	end->next = st->rooms;
@@ -93,13 +94,16 @@ int 	save_room(char *inp, t_lem *st)
 	new = (t_room *)malloc(sizeof(t_room));
 	while (r->next != NULL)
 		r = r->next;
-	__builtin_bzero(new, sizeof(t_room*));
+//	__builtin_bzero(new, sizeof(t_room));
+	new->next = NULL;
+	new->connect = NULL;
+	new->name = NULL;
 	r->next = new;
 	r = r->next;
 	r->rom = i;
 	while (inp[a] != ' ')
 		a++;
-	r->name = (char *)malloc(sizeof(char *) * a);
+	r->name = (char *)malloc(sizeof(r->name) * a);
 	r->name[a] = '\0';
 	while (a-- != -1)
 		r->name[a] = inp[a];
@@ -134,14 +138,16 @@ int 	 save_connect(t_lem *st, char *line)
 	test_conect(line);
 	while (line[i] != '-')
 		i++;
-	__builtin_bzero(inp = (char *)malloc(sizeof(char) * i + 1), sizeof(char *));
+	inp = (char *)malloc(sizeof(char) * (i + 1));
+	__builtin_bzero(inp, sizeof(char) * (i + 1));
 	inp = ft_strncpy(inp, line, i);
 	while (ft_strcmp(inp, tmp->name))
 		if (tmp->next != NULL)
 			tmp = tmp->next;
 		else if (ft_printf("ERROR9\n"))
 			exit(1);
-	__builtin_bzero(inp2 = (char *)malloc(sizeof(char) * ft_strlen(&line[++i]) + 1), sizeof(char *));
+	inp2 = (char *)malloc(sizeof(char) * ft_strlen(&line[++i]) + 1);
+	__builtin_bzero(inp2, sizeof(char) * (ft_strlen(&line[i]) + 1));
 	inp2 = ft_strcpy(inp2, &line[i]);
 	while (ft_strcmp(inp2, tmp2->name))
 		if (tmp2->next != NULL)
