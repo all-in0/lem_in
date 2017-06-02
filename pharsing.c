@@ -147,7 +147,7 @@ int 	 save_connect(t_lem *st, char *line)
 		else if (ft_printf("ERROR9\n"))
 			exit(1);
 	inp2 = (char *)malloc(sizeof(char) * ft_strlen(&line[++i]) + 1);
-	__builtin_bzero(inp2, sizeof(char) * (ft_strlen(&line[i]) + 1));
+	//__builtin_bzero(inp2, sizeof(char) * (ft_strlen(&line[i]) + 1));
 	inp2 = ft_strcpy(inp2, &line[i]);
 	while (ft_strcmp(inp2, tmp2->name))
 		if (tmp2->next != NULL)
@@ -183,10 +183,14 @@ int 	parsing(t_lem *st)
 				continue;
 			else if (b == 4)
 				save_room(inp, st);
-			free(inp);
+			//free(inp);
 		}
 		else
-			break ;
+		{
+			//free(inp);
+			break;
+		}
+		free(inp);
 	}
 	return (1);
 }

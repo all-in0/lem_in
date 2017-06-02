@@ -41,9 +41,13 @@ int		main(int argc, char **argv)
 	stru.rooms = rommmm;
 	get_next_line(0, &inp);
 	stru.ants = ft_atoi(inp);
-	//free(&inp);
+	//free(inp);
+	//inp = NULL;
 	while (inp[i] <= '9' && inp[i] >= '0')
 		i++;
+	if (inp[i] != '\0' && ft_printf("ERROR\n"))
+		exit (0);
+	free(inp);
 	parsing(&stru);
 	//ft_printf("%i, %s", stru.rooms->rom, stru.rooms->name);
 	mas = (int *)malloc(sizeof(int *));
