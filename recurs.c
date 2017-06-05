@@ -65,23 +65,29 @@ int 	test_repeat(int *mas, int a)
 void 	recurs(t_lem *st, int a, int *str, int i)
 {
 	t_room			*room;
+	int 			*tst;
 
+	tst = NULL;
 	room = search_rr(st, a);
 	while (room->connect[++i] != 0 && i <= int_len(room->connect))
 	{
 		if (room->connect[i] != -1 && test_repeat(str, room->connect[i])) {
 			if (room->connect[i + 1] == 0)
-				recurs(st, room->connect[i], ft_intjoin(str, a, 1), -1);
+				recurs(st, room->connect[i], (tst = ft_intjoin(str, a, 1)), -1);
 			else
-				recurs(st, room->connect[i], ft_intjoin(str, a, 0), -1);
+				recurs(st, room->connect[i], (tst = ft_intjoin(str, a, 0)), -1);
 
 		}
 	}
 	//free(&str);
 	if (a == -2)
 	{
-		st->ways = ft_add_str(st->ways, ft_intjoin(str, -2, 0));
+		st->ways = ft_add_str(st->ways, (tst = ft_intjoin(str, -2, 0)));
 	//	free(str);
 	}
-	free(str);
+	free (str);
+//	if (tst != NULL) {
+//		free(tst);
+//		tst = NULL;
+//	}
 }
