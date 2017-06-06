@@ -103,10 +103,11 @@ int 	save_room(char *inp, t_lem *st)
 	r->rom = i;
 	while (inp[a] != ' ')
 		a++;
-	r->name = (char *)malloc(sizeof(r->name) * a);
-	r->name[a] = '\0';// a-- rewriting a element of array;
-	while (a-- != -1)
-		r->name[a] = inp[a];
+	r->name = (char *)malloc(a + 1);
+	//r->name[a] = '\0';// a-- rewriting a element of array;
+	//while (a-- != -1)
+	//	r->name[a] = inp[a];
+	strncpy(r->name, inp, a);
 	return (0);
 }
 
