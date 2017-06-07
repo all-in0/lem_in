@@ -27,12 +27,27 @@
 void	save_wa(int a, int b, t_way *tw, t_lem *rr) {
 	const char	*str;
 	char		*in;
+	char 		*tmp;
+	char 		*tmp2;
+	char 		*tmp3;
+	char 		*tmp4;
+	char		*tm;
+
+
 	in = ft_itoa(a);
 	str = search_rr(rr, b)->name;
 	if (tw->wa == NULL)
-		tw->wa = ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str));
-	else
-		tw->wa = ft_strjoin(tw->wa, ft_strjoin(" ", ft_strjoin(ft_strjoin("L", in), ft_strjoin("-", str))));
+		tw->wa = ft_strjoin((tmp = ft_strjoin("L", in)), (tmp2 = ft_strjoin("-", str)));
+	else {
+		tm = tw->wa;
+		tw->wa = ft_strjoin(tw->wa,
+							(tmp = ft_strjoin(" ", (tmp2 = ft_strjoin((tmp3 = ft_strjoin("L", in)), (tmp4 = ft_strjoin("-", str)))))));
+		free(tmp3);
+		free(tmp4);
+		free(tm);
+	}
+	free(tmp);
+	free(tmp2);
 	free(in);
 }
 
