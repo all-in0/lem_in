@@ -34,10 +34,10 @@ int		**ft_add_str(int **m, int *str)
 		m = (int **) malloc(sizeof(new_m) * 1);
 		m[0] = 0;
 	}
-	new_m = (int **)malloc(sizeof(new_m) * (m_len(m) + 1));
+	new_m = (int **)malloc(sizeof(str) * (m_len(m) + 1));
 	while (m[++i] != 0)
 		new_m[i] = m[i];
-	new_m[i] = str;
+	new_m[i] = str; // zapisat rukami
 	new_m[++i] = 0;
 	free(m);
 	return (new_m);

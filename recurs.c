@@ -40,7 +40,7 @@ int 	* ft_intjoin(int *str, int a, int chek)
 	i = 0;
 	while (str[i] != 0)
 		i++;
-	s = (int *)malloc(sizeof(s) * (i + 2));
+	s = (int *)malloc(sizeof(int) * (i + 2));
 	s[i + 1] = 0;
 	s[i] = a;
 	while (--i >= 0)
@@ -62,30 +62,44 @@ int 	test_repeat(int *mas, int a)
 	return (0);
 }
 
-void 	recurs(t_lem *st, int a, int *str, int i)
+void 	recurs(t_lem *st, int a, int *str, int i, int check)
 {
+	static int		count = 0;
 	t_room			*room;
 	int 			*tst;
 
-	tst = NULL;
+	//tst = NULL;
+	if (count > 200)
+		return ;
 	room = search_rr(st, a);
-	while (room->connect[++i] != 0 && i <= int_len(room->connect))
+	while (room->connect[++i] != 0 && i <= int_len(room->connect) && a != -2) // a ++ -2
 	{
 		if (room->connect[i] != -1 && test_repeat(str, room->connect[i])) {
-			if (room->connect[i + 1] == 0)
-				recurs(st, room->connect[i], (tst = ft_intjoin(str, a, 1)), -1);
+			if (room->connect[i + 1] == 0) {
+				tst = ft_intjoin(str, a, 1);
+				recurs(st, room->connect[i], tst, -1, 1);
+				//free(tst);
+			}
 			else
-				recurs(st, room->connect[i], (tst = ft_intjoin(str, a, 0)), -1);
-
+			{
+				tst = ft_intjoin(str, a, 0);
+				recurs(st, room->connect[i], tst, -1, 0);
+				//free(tst);
+			}
 		}
 	}
+	//free(tst);
 	//free(&str);
 	if (a == -2)
 	{
-		st->ways = ft_add_str(st->ways, (tst = ft_intjoin(str, -2, 0)));
-	//	free(str);
+		tst = ft_intjoin(str, -2, 0);
+		st->ways = ft_add_str(st->ways, tst);
+		count++;
+		//free(tst);
+		//return ;
 	}
-	free (str);
+	//if (check == 1)
+		free (str);
 //	if (tst != NULL) {
 //		free(tst);
 //		tst = NULL;

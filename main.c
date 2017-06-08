@@ -54,7 +54,7 @@ int		main(int argc, char **argv)
 	mas[0] = 0;
 	//__builtin_bzero(mas, sizeof(int));
 	clean_connect(stru.rooms);
-	recurs(&stru, -1, mas, -1);
+	recurs(&stru, -1, mas, -1, 1);
 	m_l(&stru);
 	clean_doubles(&stru);
 	search_way(&stru);

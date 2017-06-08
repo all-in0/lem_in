@@ -46,7 +46,7 @@ t_room	*search_rr(t_lem *st, int a);
 void	clean_connect(t_room *rr);
 void	m_l(t_lem *st);
 void 	clean_doubles(t_lem *rr);
-void 	recurs(t_lem *st, int a, int *str, int i);
+void 	recurs(t_lem *st, int a, int *str, int i, int check);
 int 	parsing(t_lem *str);
 
 #endif
