@@ -39,8 +39,10 @@ int		main(int argc, char **argv)
 //	wai->wa = NULL;
 //	stru.wa = wai;
 	stru.rooms = rommmm;
-	get_next_line(0, &inp);
-	stru.ants = ft_atoi(inp);
+	if (get_next_line(0, &inp) > 0)
+		stru.ants = ft_atoi(inp);
+	else if (__builtin_printf("ERROR"))
+		exit (1);
 	//free(inp);
 	//inp = NULL;
 	while (inp[i] <= '9' && inp[i] >= '0')
