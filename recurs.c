@@ -12,6 +12,8 @@
 
 #include "lem-in.h"
 
+int		g_count = 0;
+
 int 	int_len(int *mas)
 {
 	int		i;
@@ -64,15 +66,14 @@ int 	test_repeat(int *mas, int a)
 
 void 	recurs(t_lem *st, int a, int *str, int i, int check)
 {
-	static int		count = 0;
 	t_room			*room;
 	int 			*tst;
 
 	//tst = NULL;
-	if (count > 200)
+	if (g_count > 200)
 		return ;
 	room = search_rr(st, a);
-	while (room->connect[++i] != 0 && i <= int_len(room->connect) && a != -2) // a ++ -2
+	while (g_count <= 200 && room->connect[++i] != 0 && i <= int_len(room->connect) && a != -2) // a ++ -2
 	{
 		if (room->connect[i] != -1 && test_repeat(str, room->connect[i])) {
 			if (room->connect[i + 1] == 0) {
@@ -94,7 +95,7 @@ void 	recurs(t_lem *st, int a, int *str, int i, int check)
 	{
 		tst = ft_intjoin(str, -2, 0);
 		st->ways = ft_add_str(st->ways, tst);
-		count++;
+		g_count++;
 		//free(tst);
 		//return ;
 	}

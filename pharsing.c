@@ -59,6 +59,7 @@ int 	valid_line(char *line)
 	int 	a;
 
 	a = 0;
+	__builtin_printf("%s\n", line);
 	if (line[0] == '#')
 		return (ft_strstr(line, "##start") ? 1 :
 			(ft_strstr(line, "##end") ? 2 : 3));
@@ -193,5 +194,6 @@ int 	parsing(t_lem *st)
 		}
 		free(inp);
 	}
+	write(1, "\n", 1);
 	return (1);
 }

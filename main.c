@@ -16,7 +16,7 @@ void	prnt_all(t_way *rr)
 {
 	while (rr != NULL)
 	{
-		ft_printf("%s\n", rr->wa);
+		__builtin_printf("%s\n", rr->wa);
 		rr = rr->next;
 	}
 }
