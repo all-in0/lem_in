@@ -12,10 +12,10 @@
 
 #include "ft_printf.h"
 
-int 		search_by_line(char *s1, char *s2)
+int		search_by_line(char *s1, char *s2)
 {
 	int		i;
-	int 	b;
+	int		b;
 
 	i = -1;
 	while (s1[++i] != '\n' && s1[i] != '\0')

@@ -14,8 +14,8 @@
 
 char	*ft_strjoin_symb(char *str, char a)
 {
-	int 	i;
-	char 	*st;
+	int		i;
+	char	*st;
 
 	i = -1;
 	st = (char *)malloc(sizeof(st) * ft_strlen(str) + 2);

@@ -10,132 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __GET_NEXT_LINE_H
-# define __GET_NEXT_LINE_H
-
-# include <string.h>
-
-/*
- ** if buff_size == 2 || 4 || 6 then
- **   one of moulitests fails // WTF?!
- */
-
-# define BUFF_SIZE 4096
-
-typedef struct  s_fd_list
-{
-    int                 fd;
-    size_t              rest_index;
-    char                *line;
-    struct s_fd_list    *next;
-    char                rest[BUFF_SIZE + 1];
-}               t_fd_list;
-
-#endif
-
-#include <stdlib.h>
-#include <unistd.h>
 #include "ft_printf.h"
 
-t_fd_list   *lst_get(t_fd_list **lst, const int fd)
+int		ft_one(int i, char **save, char **line, int a)
 {
-    if (!(*lst))
-    {
-        *lst = (t_fd_list *)malloc(sizeof(t_fd_list));
-        (*lst)->fd = fd;
-        ft_bzero((*lst)->rest, sizeof((*lst)->rest));
-        (*lst)->rest_index = 0;
-        (*lst)->line = 0;
-        (*lst)->next = 0;
-        return (*lst);
-    }
-    else if ((*lst)->fd == fd)
-        return (*lst);
-    else
-        return (lst_get(&(*lst)->next, fd));
+	char	*tmp;
+	char	*s1;
+	int		t;
+
+	t = 0;
+	tmp = *save;
+	while (tmp[a] != '\n' && tmp[a] != '\0')
+		a++;
+	*line = ft_strsub(tmp, 0, a);
+	if (tmp[a] == '\n')
+	{
+		tmp = ft_strdup(&tmp[a + 1]);
+		free(*save);
+		*save = tmp;
+		return (1);
+	}
+	else if (a != 0 && tmp[a] == '\0')
+	{
+		tmp[0] = '\0';
+		s1 = *line;
+		if (i == 0 && s1[0] == '\0')
+			t = 1;
+	}
+	else
+		return (-1);
+	return (t > 0 ? 2 : 1);
 }
 
-int         str_concat(char **dest, const char *src)
+int		get_next_line(const int fd, char **line)
 {
-    int     dest_len;
-    int     src_len;
-    char    *res;
-    
-    dest_len = *dest ? ft_strlen(*dest) : 0;
-    src_len = 0;
-    while (src[src_len] && src[src_len] != '\n')
-        src_len++;
-    res = (char *)malloc(dest_len + src_len + 1);
-    if (*dest)
-    {
-        ft_strcpy(res, *dest);
-        ft_strncat(res, src, src_len);
-        free(*dest);
-    }
-    else
-        ft_strncpy(res, src, src_len);
-    res[dest_len + src_len] = 0;
-    *dest = res;
-    return (src_len);
-}
+	int			i;
+	int			c;
+	static char	*save = "\0";
+	char		*tmp;
+	char		buffer[BUFF_SIZE + 1];
 
-int         get_next_line_e(t_fd_list *curr, const int fd, char **line)
-{
-    int                 nread;
-    
-    if ((nread = read(curr->fd, curr->rest, BUFF_SIZE)) < 0)
-        return (-1);
-    curr->rest_index = 0;
-    if (curr->line && nread == 0)
-    {
-        *line = curr->line;
-        curr->line = 0;
-        return (1);
-    }
-    else if (nread == 0)
-    {
-        *line = 0;
-        curr->line = 0;
-        ft_bzero(curr->rest, sizeof(curr->rest));
-        return (0);
-    }
-    return (get_next_line(fd, line));
-}
-
-int         get_next_line_ne_n(t_fd_list *curr, const char *nl, char **line)
-{
-    int                 diff;
-    
-    diff = nl - &curr->rest[curr->rest_index];
-    str_concat(&curr->line, &curr->rest[curr->rest_index]);
-    curr->rest_index += diff + 1;
-    *line = curr->line;
-    curr->line = 0;
-    return (1);
-}
-
-int         get_next_line(const int fd, char **line)
-{
-    static t_fd_list    *lst = 0;
-    t_fd_list           *curr;
-    int                 nread;
-    char                *newline;
-    
-    curr = lst_get(&lst, fd);
-    if (curr->rest[curr->rest_index])
-    {
-        newline = ft_strchr(&curr->rest[curr->rest_index], '\n');
-        if (newline)
-            return (get_next_line_ne_n(curr, newline, line));
-        else
-        {
-            str_concat(&curr->line, &curr->rest[curr->rest_index]);
-            if ((nread = read(curr->fd, curr->rest, BUFF_SIZE)) < 0)
-                return (-1);
-            curr->rest[nread] = 0;
-            curr->rest_index = 0;
-            return (get_next_line(fd, line));
-        }
-    }
-    return (get_next_line_e(curr, fd, line));
+	if (fd < 0 || !(line) || BUFF_SIZE < 1)
+		return (-1);
+	while (!(ft_strchr(save, '\n')) && (i = read(fd, buffer, BUFF_SIZE)) > 0)
+	{
+		buffer[i] = '\0';
+		tmp = save;
+		tmp = ft_strjoin(tmp, buffer);
+		if (save[1] != '\0')
+			free(save);
+		save = tmp;
+	}
+	if (i < 0)
+		return (-1);
+	if ((c = ft_one(i, &save, &(*line), 0)) == 2 && i == 0)
+		return (0);
+	if (c == -1)
+		return (-1);
+	return (1);
 }

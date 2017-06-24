@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int 	m_len(int **m)
+int		m_len(int **m)
 {
 	int		i;
 
@@ -30,14 +30,15 @@ int		**ft_add_str(int **m, int *str)
 	int		i;
 
 	i = -1;
-	if (m == NULL) {
-		m = (int **) malloc(sizeof(new_m) * 1);
+	if (m == NULL)
+	{
+		m = (int **)malloc(sizeof(new_m) * 1);
 		m[0] = 0;
 	}
 	new_m = (int **)malloc(sizeof(str) * (m_len(m) + 1));
 	while (m[++i] != 0)
 		new_m[i] = m[i];
-	new_m[i] = str; // zapisat rukami
+	new_m[i] = str;
 	new_m[++i] = 0;
 	free(m);
 	return (new_m);

@@ -14,7 +14,7 @@
 
 int		*ft_add_int(int *mas, int a)
 {
-	int 	*temp;
+	int		*temp;
 	int		i;
 
 	i = 0;

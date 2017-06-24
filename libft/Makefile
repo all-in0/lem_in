@@ -71,6 +71,8 @@ SRC =	ft_printf.c\
 		ft_lstadd.c\
 		ft_lstiter.c\
 		ft_lstmap.c\
+		ft_add_str.c\
+		ft_add_int.c\
 
 NAME = libftprintf.a
 OBJ = $(SRC:.c=.o)

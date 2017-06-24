@@ -10,11 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
-int 	cl_all(t_lem *rr)
+void	bubble_m(t_lem *st)
 {
-	int 	i;
+	int		*tmp;
+	int		i;
+
+	while (1)
+	{
+		i = 0;
+		while (st->ways[i] != 0)
+		{
+			if (st->ways[i + 1] != 0 && st->ways[i][0] > st->ways[i + 1][0])
+			{
+				tmp = st->ways[i];
+				st->ways[i] = st->ways[i + 1];
+				st->ways[i + 1] = tmp;
+				break ;
+			}
+			i++;
+		}
+		if (st->ways[i] == 0)
+			return ;
+	}
+}
+
+void	m_l(t_lem *st)
+{
+	int		i;
+	int		a;
+
+	if (st->ways == NULL && __builtin_printf("ERROR\n"))
+		exit(1);
+	a = -1;
+	while (st->ways[++a] != 0)
+	{
+		i = 0;
+		while (st->ways[a][i] != 0)
+			i++;
+		st->ways[a][0] = i;
+	}
+	bubble_m(st);
+}
+
+void	sea_3(t_way *tw, int b)
+{
+	tw->next->wa = NULL;
+	tw->next->next = NULL;
+	tw->next->day = b;
+}
+
+int		cl_all(t_lem *rr)
+{
+	int		i;
 	t_way	*tmp;
 	t_room	*tm;
 
@@ -38,7 +87,5 @@ int 	cl_all(t_lem *rr)
 		free(rr->ways[i]);
 	free(rr->ways[i]);
 	free(rr->ways);
-//	free(rr->start);
-//	free(rr->end);
-	return(0);
+	return (0);
 }

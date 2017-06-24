@@ -12,7 +12,7 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-//# define BUFF_SIZE 32
+# define BUFF_SIZE 4096
 # include <stdarg.h>
 # include <string.h>
 # include <stdlib.h>
@@ -21,8 +21,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <fcntl.h>
-#include <stdint.h>
-
+# include <stdint.h>
 # define RED	write(1, "\x1b[31m", 5)
 # define GRE	write(1, "\x1b[32m", 5)
 # define YEL	write(1, "\x1b[33m", 5)
@@ -38,13 +37,6 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_gnl
-{
-    int				content;
-    char			*save;
-    struct s_gnl	*next;
-}					t_gnl;
-
 typedef struct		s_prf
 {
 	int				flags[5];
@@ -59,7 +51,7 @@ typedef struct		s_prf
 int					*ft_add_int(int *mas, int a);
 char				*ft_strjoin_symb(char *str, char a);
 int					**ft_add_str(int **m, int *str);
-int                 get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 int					kostuli(t_prf *phar);
 char				*ft_strload(char *str, int a);
 int					make_plus(t_prf *phar);
@@ -85,7 +77,7 @@ char				*ft_itoa_base_unsig(unsigned long long int value, int base);
 char				*ft_a_itoa_base_unsig(unsigned long long int value,
 					int base);
 size_t				ft_big_s_strlen(wchar_t *s);
-int 				search_by_line(char *s1, char *s2);
+int					search_by_line(char *s1, char *s2);
 int					ft_printf(const char *format, ...);
 char				*ft_ultoa(unsigned long long n);
 char				*ft_itoa_base(long long value, int base, int up);
