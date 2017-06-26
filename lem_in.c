@@ -61,6 +61,8 @@ void	prnt_all(t_way *rr, t_lem *tl)
 	}
 	if (tl->move == 1)
 		__builtin_printf("\n\x1b[31mThere was %d moves\n", i);
+	__builtin_printf("\x1b[0m");
+
 }
 
 void	ants(t_lem *stru)

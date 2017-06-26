@@ -61,6 +61,27 @@ void	sea_3(t_way *tw, int b)
 	tw->next->day = b;
 }
 
+void	free_ptr(t_ptr *rr)
+{
+	t_ptr	*tmp;
+	t_ptr	*prev;
+
+	prev = NULL;
+	while (rr != NULL)
+	{
+//		tmp = rr;
+//		rr = rr->next;
+//		free(tmp->ptr);
+//		free(tmp->next);
+		if (rr->ptr[0] != 0)
+			free(rr->ptr);
+		prev = rr;
+		rr = rr->next;
+		free(prev);
+	}
+	//free(prev);
+}
+
 int		cl_all(t_lem *rr)
 {
 	int		i;
@@ -87,5 +108,6 @@ int		cl_all(t_lem *rr)
 		free(rr->ways[i]);
 	free(rr->ways[i]);
 	free(rr->ways);
+	free_ptr(rr->ptr);
 	return (0);
 }

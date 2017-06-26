@@ -6,13 +6,13 @@
 #    By: vnakonec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/03 15:56:35 by vnakonec          #+#    #+#              #
-#    Updated: 2017/06/19 16:28:13 by vnakonec         ###   ########.fr        #
+#    Updated: 2017/06/26 20:23:16 by vnakonec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra
 
 INCLUDES = .
 
@@ -23,6 +23,7 @@ SRCS = lem_in.c\
 	  pharsing.c\
 	  recurs.c\
 	  search_ways.c\
+	  cl_r.c\
 
 OBJ = $(SRCS:.c=.o)
 

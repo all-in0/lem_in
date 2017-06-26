@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.7)
-project(lem_in_3)
+project(lem_in)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -88,10 +88,12 @@ set(SOURCE_FILES
         libft/search_by_line.c
         clean.c
         clean_struct.c
-        lem-in.h
-        main.c
+        lem_in.c
+        lem_in.h
+        phars_2.c
         pharsing.c
         recurs.c
-        search_ways.c)
+        search_ways.c
+        cl_r.c)
 
-add_executable(lem_in_3 ${SOURCE_FILES})
+add_executable(lem_in ${SOURCE_FILES})

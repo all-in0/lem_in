@@ -70,18 +70,21 @@ void	recurs(t_lem *st, int a, int *str, int i)
 	if (g_count > 2000)
 		return ;
 	room = search_rr(st, a);
+	st->ptr = save_ptr(str, st->ptr);
 	while (g_count <= 2000 && room-> connect != NULL && room->connect[++i] != 0
 		&& i <= int_len(room->connect) && a != -2)
 	{
 		if (room->connect[i] != -1 && test_repeat(str, room->connect[i]))
 		{
 			tst = ft_intjoin(str, a);
+			st->ptr = save_ptr(tst, st->ptr);
 			recurs(st, room->connect[i], tst, -1);
 		}
 	}
 	if (a == -2)
 	{
 		tst = ft_intjoin(str, -2);
+		st->ptr = save_ptr(tst, st->ptr);
 		st->ways = ft_add_str(st->ways, tst);
 		g_count++;
 	}

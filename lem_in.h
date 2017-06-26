@@ -29,6 +29,12 @@ typedef struct		s_way
 	struct s_way	*next;
 }					t_way;
 
+typedef struct		s_ptr
+{
+	int				*ptr;
+	struct s_ptr	*next;
+}					t_ptr;
+
 typedef struct		s_lem
 {
 	int 			move;
@@ -38,10 +44,12 @@ typedef struct		s_lem
 	int				ants;
 	char			*start;
 	char			*end;
+	t_ptr			*ptr;
 	t_way			*wa;
 	t_room			*rooms;
 }					t_lem;
 
+t_ptr				*save_ptr(int *p, t_ptr *ptr);
 void				m_l(t_lem *st);
 void				sea_3(t_way *tw, int b);
 t_room				*save_connn_2(t_lem *st, char *line, int i);
