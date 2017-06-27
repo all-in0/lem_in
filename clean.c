@@ -67,14 +67,15 @@ void	free_ptr(t_ptr *rr)
 	t_ptr	*prev;
 
 	prev = NULL;
+	//rr = rr->next;
 	while (rr != NULL)
 	{
 //		tmp = rr;
 //		rr = rr->next;
 //		free(tmp->ptr);
 //		free(tmp->next);
-		if (rr->ptr[0] != 0)
-			free(rr->ptr);
+		//if (rr->ptr[0] != 0)
+		free(rr->ptr);
 		prev = rr;
 		rr = rr->next;
 		free(prev);
@@ -84,11 +85,9 @@ void	free_ptr(t_ptr *rr)
 
 int		cl_all(t_lem *rr)
 {
-	int		i;
 	t_way	*tmp;
 	t_room	*tm;
 
-	i = -1;
 	while (rr->wa)
 	{
 		tmp = rr->wa;
@@ -104,10 +103,11 @@ int		cl_all(t_lem *rr)
 		free(tm->connect);
 		free(tm);
 	}
-	while (rr->ways[++i] != 0)
-		free(rr->ways[i]);
-	free(rr->ways[i]);
-	free(rr->ways);
+//	while (rr->ways[++i] != 0)
+//		free(rr->ways[i]);
+//	free(rr->ways[i]);
+	//free(rr->ways);
 	free_ptr(rr->ptr);
+	free(rr->ways);
 	return (0);
 }

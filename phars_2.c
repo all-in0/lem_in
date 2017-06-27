@@ -97,7 +97,7 @@ int			save_room(char *inp, t_lem *st)
 		a++;
 	r->name = (char *)malloc(a + 1);
 	r->name[a] = '\0';
-	strncpy(r->name, inp, a);
+	ft_strncpy(r->name, inp, a);
 	return (0);
 }
 

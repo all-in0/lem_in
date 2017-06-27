@@ -112,5 +112,6 @@ int		main(void)
 	search_way(&stru);
 	prnt_all(stru.wa, &stru);
 	cl_all(&stru);
+	//while(1);
 	return (0);
 }

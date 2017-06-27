@@ -88,5 +88,5 @@ void	recurs(t_lem *st, int a, int *str, int i)
 		st->ways = ft_add_str(st->ways, tst);
 		g_count++;
 	}
-	free(str);
+	//free(str);
 }

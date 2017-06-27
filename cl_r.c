@@ -25,11 +25,13 @@ t_ptr	*save_ptr(int *p, t_ptr *ptr)
 	else
 	{
 		tmp = ptr;
-		while (tmp->next != NULL) {
+		while (tmp->next) {
 			if (tmp->ptr == p)
 				return (ptr);
 			tmp = tmp->next;
 		}
+		if (tmp->ptr == p)
+			return (ptr);
 		tmp->next = (t_ptr *)malloc(sizeof(t_ptr));
 		tmp->next->next = NULL;
 		tmp->next->ptr = p;
