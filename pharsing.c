@@ -18,17 +18,12 @@ int		valid_line_2(char *line, int a)
 		a++;
 	if (line[a] == ' ' && (line[a - 1] >= '0' && line[a - 1] <= '9'))
 		a++;
-	else {
-		//free(line);
+	else
 		return (0);
-	}
 	while (line[a] >= '0' && line[a] <= '9')
 		a++;
-	if (line[a] == '\0' && (line[a - 1] >= '0' && line[a - 1] <= '9')) {
-		//free(line);
+	if (line[a] == '\0' && (line[a - 1] >= '0' && line[a - 1] <= '9'))
 		return (4);
-	}
-	//free(line);
 	return (0);
 }
 
@@ -42,24 +37,23 @@ int		valid_line(char *line, t_lem *st)
 		exit(0);
 	if (line[0] == '#')
 	{
-		if (!ft_strcmp(line, "##start")) {
+		if (!ft_strcmp(line, "##start"))
 			return (1);
-		}
-		else if (!ft_strcmp(line, "##end")){
+		else if (!ft_strcmp(line, "##end"))
 			return (2);
-		}
 		else if (!ft_strcmp(line, "##way"))
 			st->way = 1;
 		else if (!ft_strcmp(line, "##move"))
 			st->move = 1;
-		free (line);
+		free(line);
 		return (3);
 	}
 	while (line[a] != ' ' && line[a] != '\0')
 		a++;
 	if (line[a] == ' ' && a > 0)
 		a++;
-	else {
+	else
+	{
 		free(line);
 		return (0);
 	}
@@ -79,7 +73,7 @@ int		save_connect(t_lem *st, char *line)
 	while (line[i] != '-')
 		i++;
 	inp = (char *)malloc(sizeof(char) * (i + 1));
-	__builtin_bzero(inp, sizeof(char) * (i + 1));
+	__builtin_bzero(inp, (sizeof(char) * (i + 1)));
 	inp = ft_strncpy(inp, line, i);
 	while (ft_strcmp(inp, tmp->name))
 		if (tmp->next != NULL)
@@ -95,11 +89,9 @@ int		save_connect(t_lem *st, char *line)
 
 void	b_one_two(t_lem *st, char *inp, int b)
 {
-	int		c;
-
 	if (b == 1)
 	{
-		if (((c = get_next_line(0, &inp)) > 0) && (valid_line(inp, st) == 4))
+		if ((get_next_line(0, &inp) > 0) && (valid_line(inp, st) == 4))
 			search_start(inp, st);
 		else if (__builtin_printf("ERROR2\n"))
 			exit(1);
@@ -136,6 +128,7 @@ int		parsing(t_lem *st)
 			break ;
 		free(inp);
 	}
+	free(inp);
 	write(1, "\n", 1);
 	return (1);
 }

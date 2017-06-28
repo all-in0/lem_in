@@ -112,8 +112,8 @@ int			search_way(t_lem *rr)
 			sea_w(rr, a, i, b);
 		else
 			a--;
-		if (((rr->ways[i] == 0 || ((rr->ways[i][0] - 2 - i) > (rr->ants - a))) ||
-			rr->ways[1] == 0)) // why -2 -i???
+		if (((rr->ways[i] == 0 || ((rr->ways[i][0] - 2 - i) >
+			(rr->ants - a))) || rr->ways[1] == 0))
 		{
 			b++;
 			i = 0;

@@ -71,7 +71,7 @@ void	recurs(t_lem *st, int a, int *str, int i)
 		return ;
 	room = search_rr(st, a);
 	st->ptr = save_ptr(str, st->ptr);
-	while (g_count <= 2000 && room-> connect != NULL && room->connect[++i] != 0
+	while (g_count <= 2000 && room->connect != NULL && room->connect[++i] != 0
 		&& i <= int_len(room->connect) && a != -2)
 	{
 		if (room->connect[i] != -1 && test_repeat(str, room->connect[i]))
@@ -88,5 +88,4 @@ void	recurs(t_lem *st, int a, int *str, int i)
 		st->ways = ft_add_str(st->ways, tst);
 		g_count++;
 	}
-	//free(str);
 }

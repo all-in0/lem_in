@@ -28,7 +28,7 @@ char	*ret_name(int i, t_room *rm)
 void	ft_print_ints(t_lem *rr)
 {
 	int		i;
-	int 	b;
+	int		b;
 
 	i = -1;
 	__builtin_printf("The %d ways was used:\n", rr->way);
@@ -38,7 +38,8 @@ void	ft_print_ints(t_lem *rr)
 		__builtin_printf("The %d way: ", (i + 1));
 		while (rr->ways[i][++b] != 0)
 			if (b == 1)
-				__builtin_printf("%s->%s", rr->start, ret_name(rr->ways[i][b], rr->rooms));
+				__builtin_printf("%s->%s"
+					, rr->start, ret_name(rr->ways[i][b], rr->rooms));
 			else
 				__builtin_printf("->%s", ret_name(rr->ways[i][b], rr->rooms));
 		__builtin_printf("\n");
@@ -62,7 +63,6 @@ void	prnt_all(t_way *rr, t_lem *tl)
 	if (tl->move == 1)
 		__builtin_printf("\n\x1b[31mThere was %d moves\n", i);
 	__builtin_printf("\x1b[0m");
-
 }
 
 void	ants(t_lem *stru)

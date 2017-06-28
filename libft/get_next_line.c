@@ -23,9 +23,9 @@ int		ft_one(int i, char **save, char **line, int a)
 	while (tmp[a] != '\n' && tmp[a] != '\0')
 		a++;
 	*line = ft_strsub(tmp, 0, a);
-	if (tmp[a] == '\n')
+	if (tmp[a] == '\n' && (tmp = ft_strdup(&tmp[a + 1])))
 	{
-		tmp = ft_strdup(&tmp[a + 1]);
+		//tmp = ft_strdup(&tmp[a + 1]);
 		free(*save);
 		*save = tmp;
 		return (1);
